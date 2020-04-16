@@ -1,4 +1,4 @@
-# presentation-actor-systems-with-akka-net
+# Actor Model + Akka.net
 
 Presentation: Actor Systems with Akka.net
 
