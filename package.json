@@ -4,10 +4,10 @@
     "description": "Presentation Actor Model and Akka.net",
     "main": "index.js",
     "scripts": {
-        "test": "reveal-md presentation/english.md --css presentation/assets/local.css --preprocessor emoji2svgimg.js",
-        "serve": "reveal-md presentation/english.md --css presentation/assets/local.css --preprocessor emoji2svgimg.js -w",
-        "build": "reveal-md presentation/english.md --css local.css --static docs --preprocessor emoji2svgimg.js",
-        "export-pdf": "reveal-md presentation/english.md --css presentation/assets/local.css --print english.pdf --preprocessor emoji2svgimg.js"
+        "test": "reveal-md presentation/english.md --css presentation.css --preprocessor emoji2svgimg.js",
+        "serve": "reveal-md presentation/english.md --css presentation.css --preprocessor emoji2svgimg.js -w",
+        "build": "reveal-md presentation/english.md --css presentation.css --static docs --preprocessor emoji2svgimg.js",
+        "export-pdf": "reveal-md presentation/english.md --css presentation.css --print english.pdf --preprocessor emoji2svgimg.js"
     },
     "repository": {
         "type": "git",
