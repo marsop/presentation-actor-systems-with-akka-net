@@ -4,12 +4,12 @@
     "description": "Presentation Actor Model and Akka.net",
     "main": "index.js",
     "scripts": {
-        "test": "reveal-md markdown/english.md",
-        "serve": "reveal-md markdown/english.md -w",
-        "serve-de": "reveal-md markdown/deutsch.md -w",
-        "build": "reveal-md markdown/english.md --static docs --static-dirs=markdown/assets",
-        "build-de": "reveal-md markdown/deutsch.md --static docs_de --static-dirs=markdown/assets",
-        "export-pdf": "reveal-md markdown/english.md --print english.pdf"
+        "test": "reveal-md markdown/english.md --css local.css --preprocessor emoji2svgimg.js",
+        "serve": "reveal-md markdown/english.md --css local.css --preprocessor emoji2svgimg.js -w",
+        "serve-de": "reveal-md markdown/deutsch.md --css local.css --preprocessor emoji2svgimg.js -w",
+        "build": "reveal-md markdown/english.md --css local.css --static docs --static-dirs=markdown/assets  --preprocessor emoji2svgimg.js",
+        "build-de": "reveal-md markdown/deutsch.md --css local.css --static docs_de --static-dirs=markdown/assets  --preprocessor emoji2svgimg.js",
+        "export-pdf": "reveal-md markdown/english.md --css local.css --print english.pdf  --preprocessor emoji2svgimg.js"
     },
     "repository": {
         "type": "git",
@@ -28,6 +28,7 @@
     },
     "homepage": "https://github.com/marsop/presentation-actor-systems-with-akka-net#readme",
     "dependencies": {
-        "reveal-md": "^3.4.7"
+        "reveal-md": "^3.4.7",
+        "twemoji": "^12.1.5"
     }
 }

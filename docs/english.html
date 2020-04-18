@@ -9,38 +9,125 @@
     <link rel="stylesheet" href="./css/theme/serif.css" id="theme" />
     <link rel="stylesheet" href="./css/highlight/zenburn.css" />
     <link rel="stylesheet" href="./css/print/paper.css" type="text/css" media="print" />
+    <link rel="stylesheet" href="./_assets/local.css" />
 
   </head>
   <body>
     <div class="reveal">
       <div class="slides"><section  data-markdown><script type="text/template">
 
-# Actor Systems with Akka.net
+## Actor Systems with Akka.net <img class="emoji" draggable="false" alt="💫" src="https://twemoji.maxcdn.com/v/12.1.5/svg/1f4ab.svg"/>
 
-Alberto Gregorio
+![akka.net logo](https://getakka.net/Images/akkalogo.png)
+
+[Alberto Gregorio](https://albertogregorio.com)
+
+2020-04-18
 </script></section><section ><section data-markdown><script type="text/template">
-## Actor Model
+# Actor Model
 
 What is an Actor?
+History of the actor model
 </script></section><section data-markdown><script type="text/template">
-One Actor can
+### Actors are..
 
-- receive messages
-- process sequentially
+- everything <img class="emoji" draggable="false" alt="🎦" src="https://twemoji.maxcdn.com/v/12.1.5/svg/1f3a6.svg"/> (Everything is an actor)
+- lightweight
+- stateful
+</script></section><section data-markdown><script type="text/template">
+### Actors can..
+
+- receive messages 
+ - process sequentially
 - change internal state
 - send new messages
 - span children
-</script></section></section><section  data-markdown><script type="text/template">
+</script></section><section data-markdown><script type="text/template">
+### Location transparency
 
+- Actor References instead of direct communication
+- Communication only via messages (that can be routed)
+- Dead letter concept
+- Actors can be located in the same machine or in a different country
+</script></section></section><section ><section data-markdown><script type="text/template">
 # Akka.net
 
-```csharp
+- repository stats
+</script></section><section data-markdown><script type="text/template">
+- Actor Model
+- Lightweight event-driven processes (1M+ actors per GB)
+- Message-based Communication
+- 
+</script></section><section data-markdown><script type="text/template">
+Simple and high-level abstractions for concurrency and parallelism
+</script></section><section data-markdown><script type="text/template">
+### Let it crash
 
-namespace Akkanet {
-    Actor actor = new Actor(1.2, 1, true, "amigo");
-}
+- Supervisor hierarchy
+- Self restoring
+- Persistency/Journaling
+</script></section><section data-markdown><script type="text/template">
+## Where does Akka.net comes from
 
-```</script></section></div>
+- Scala (JVM)
+- Akka 
+  - add stats
+</script></section><section data-markdown><script type="text/template">
+## Basic Actors
+
+- Untyped
+- Typed
+</script></section><section data-markdown><script type="text/template">
+### States
+
+- Become/Unbecome (stack state)
+
+</script></section><section data-markdown><script type="text/template">
+## Routers
+</script></section><section data-markdown><script type="text/template">
+## Remote
+
+- Akka.Remote
+
+-----
+
+## Overview of other capabilities
+
+- Akka.Cluster
+- Akka.Persistence
+- Akka.Streams
+</script></section><section data-markdown><script type="text/template">
+## Akka.net Pros
+
+- Resilient
+- Scalable
+- Very performant
+</script></section><section data-markdown><script type="text/template">
+## Akka.net Cons
+
+- Not so easy to get started
+- Yet another abstraction
+- Complex distributed logic is still complex
+</script></section><section data-markdown><script type="text/template">
+### Alternatives: Distributed Computing
+
+[Microsoft Orleans](https://dotnet.github.io/orleans/)
+
+![ms orleans](https://raw.githubusercontent.com/dotnet/orleans/gh-pages/assets/logo_full.png)
+</script></section><section data-markdown><script type="text/template">
+### Alternatives: Serverless
+
+[Azure Functions](https://azure.microsoft.com/de-de/services/functions/)
+
+![ms functions](https://blog.palfinger.ag/wp-content/uploads/2018/10/0_SboqG9ze_J63PJ2i-696x310.png")
+</script></section><section data-markdown><script type="text/template">
+### Where to find more info
+
+- [Akka.net (docs, howto)](http://getakka.net)
+- [GitHub repo](https://github.com/akkadotnet/akka.net)
+- [Petabridge (bootcamps)](http://akka.net)
+- [Lightbend/Typesafe (original Akka devs)](https://www.lightbend.com/akka-platform)
+</script></section></section></div>
     </div>
 
     <script src="./js/reveal.js"></script>
