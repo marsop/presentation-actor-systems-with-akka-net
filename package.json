@@ -4,12 +4,12 @@
     "description": "Presentation Actor Model and Akka.net",
     "main": "index.js",
     "scripts": {
-        "test": "reveal-md markdown/english.md --css local.css --preprocessor emoji2svgimg.js",
-        "serve": "reveal-md markdown/english.md --css local.css --preprocessor emoji2svgimg.js -w",
-        "serve-de": "reveal-md markdown/deutsch.md --css local.css --preprocessor emoji2svgimg.js -w",
-        "build": "reveal-md markdown/english.md --css local.css --static docs --static-dirs=markdown/assets  --preprocessor emoji2svgimg.js",
-        "build-de": "reveal-md markdown/deutsch.md --css local.css --static docs_de --static-dirs=markdown/assets  --preprocessor emoji2svgimg.js",
-        "export-pdf": "reveal-md markdown/english.md --css local.css --print english.pdf  --preprocessor emoji2svgimg.js"
+        "test": "reveal-md presentation/english.md --css presentation/local.css --preprocessor emoji2svgimg.js",
+        "serve": "reveal-md presentation/english.md --css presentation/local.css --preprocessor emoji2svgimg.js -w",
+        "serve-de": "reveal-md presentation/deutsch.md --css presentation/local.css --preprocessor emoji2svgimg.js -w",
+        "build": "reveal-md presentation/english.md --css presentation/local.css --static docs --preprocessor emoji2svgimg.js",
+        "build-de": "reveal-md presentation/deutsch.md --css presentation/local.css --static docs_de --preprocessor emoji2svgimg.js",
+        "export-pdf": "reveal-md presentation/english.md --css presentation/local.css --print english.pdf  --preprocessor emoji2svgimg.js"
     },
     "repository": {
         "type": "git",

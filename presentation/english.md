@@ -23,7 +23,7 @@ History of the actor model
 
 ### Actors are..
 
-- everything 🎦 (Everything is an actor)
+- everything 🦄 (Everything is an actor)
 - lightweight
 - stateful
 
