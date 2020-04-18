@@ -1,0 +1,33 @@
+{
+    "name": "presentation-actor-systems-with-akka-net",
+    "version": "1.0.0",
+    "description": "Presentation Actor Model and Akka.net",
+    "main": "index.js",
+    "scripts": {
+        "test": "reveal-md english.md --theme solarized --highlight-theme github -w",
+        "serve": "reveal-md english.md --theme solarized --highlight-theme github -w",
+        "serve-de": "reveal-md english.md --theme solarized --highlight-theme github -w",
+        "build": "reveal-md english.md --theme solarized --highlight-theme github --static docs --static-dirs=assets",
+        "build-de": "reveal-md english.md --theme solarized --highlight-theme github --static docs_de --static-dirs=assets",
+        "export-pdf": "reveal-md english.md --theme solarized --highlight-theme github --print english.pdf"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/marsop/presentation-actor-systems-with-akka-net.git"
+    },
+    "keywords": [
+        "revealjs",
+        "akkanet",
+        "dotnet",
+        "actor_model"
+    ],
+    "author": "Alberto Gregorio",
+    "license": "CC-BY-SA-4.0",
+    "bugs": {
+        "url": "https://github.com/marsop/presentation-actor-systems-with-akka-net/issues"
+    },
+    "homepage": "https://github.com/marsop/presentation-actor-systems-with-akka-net#readme",
+    "dependencies": {
+        "reveal-md": "^3.4.7"
+    }
+}
