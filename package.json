@@ -4,12 +4,12 @@
     "description": "Presentation Actor Model and Akka.net",
     "main": "index.js",
     "scripts": {
-        "test": "reveal-md english.md --theme solarized --highlight-theme github -w",
-        "serve": "reveal-md english.md --theme solarized --highlight-theme github -w",
-        "serve-de": "reveal-md english.md --theme solarized --highlight-theme github -w",
-        "build": "reveal-md english.md --theme solarized --highlight-theme github --static docs --static-dirs=assets",
-        "build-de": "reveal-md english.md --theme solarized --highlight-theme github --static docs_de --static-dirs=assets",
-        "export-pdf": "reveal-md english.md --theme solarized --highlight-theme github --print english.pdf"
+        "test": "reveal-md markdown/english.md",
+        "serve": "reveal-md markdown/english.md -w",
+        "serve-de": "reveal-md markdown/deutsch.md -w",
+        "build": "reveal-md markdown/english.md --static docs --static-dirs=markdown/assets",
+        "build-de": "reveal-md markdown/deutsch.md --static docs_de --static-dirs=markdown/assets",
+        "export-pdf": "reveal-md markdown/english.md --print english.pdf"
     },
     "repository": {
         "type": "git",

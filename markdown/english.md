@@ -1,7 +1,5 @@
 ---
 title: Actor Systems with Akka.net
-theme: solarized
-highlight-theme: github
 ---
 
 
