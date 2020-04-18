@@ -6,8 +6,8 @@
 
     <title>Actor Systems with Akka.net</title>
     <link rel="stylesheet" href="./css/reveal.css" />
-    <link rel="stylesheet" href="./css/theme/solarized.css" id="theme" />
-    <link rel="stylesheet" href="./css/highlight/github.css" />
+    <link rel="stylesheet" href="./css/theme/serif.css" id="theme" />
+    <link rel="stylesheet" href="./css/highlight/zenburn.css" />
     <link rel="stylesheet" href="./css/print/paper.css" type="text/css" media="print" />
 
   </head>
@@ -15,14 +15,13 @@
     <div class="reveal">
       <div class="slides"><section  data-markdown><script type="text/template">
 
-
 # Actor Systems with Akka.net
 
 Alberto Gregorio
 </script></section><section ><section data-markdown><script type="text/template">
 ## Actor Model
 
-Actors are...
+What is an Actor?
 </script></section><section data-markdown><script type="text/template">
 One Actor can
 
@@ -34,7 +33,14 @@ One Actor can
 </script></section></section><section  data-markdown><script type="text/template">
 
 # Akka.net
-</script></section></div>
+
+```csharp
+
+namespace Akkanet {
+    Actor actor = new Actor(1.2, 1, true, "amigo");
+}
+
+```</script></section></div>
     </div>
 
     <script src="./js/reveal.js"></script>
