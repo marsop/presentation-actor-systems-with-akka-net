@@ -2,12 +2,9 @@
 title: Actor Systems with Akka.net
 theme: serif
 highlight-theme: github
-background-image: 
 ---
 
 ## Actor Systems with Akka.net 💫
-
-![dsa](images/company-logo.png)
 
 ![akka.net logo](https://getakka.net/Images/akkalogo.png)
 
