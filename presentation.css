@@ -15,3 +15,11 @@ img {
 img:not(.emoji) {
     height: 200pt !important;
 }
+
+img:not(.emoji)[src*="#big"] {
+    height: 100px !important;
+}
+
+img:not(.emoji)[src*="#big"] {
+    height: 400px !important;
+}
