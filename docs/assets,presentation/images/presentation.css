@@ -1,0 +1,25 @@
+/* TWEMOJI */
+
+img.emoji {
+    height: 1em;
+    width: 1em;
+    margin: 0 .05em 0 .1em !important;
+    vertical-align: -0.1em;
+}
+
+img {
+    border: none !important;
+    box-shadow: none !important;
+}
+
+img:not(.emoji) {
+    height: 200pt !important;
+}
+
+img:not(.emoji)[src*="#big"] {
+    height: 100px !important;
+}
+
+img:not(.emoji)[src*="#big"] {
+    height: 400px !important;
+}

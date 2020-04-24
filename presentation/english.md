@@ -4,45 +4,6 @@ theme: serif
 highlight-theme: github
 ---
 
-- [Actor Systems with Akka.net 💫](#actor-systems-with-akkanet-%f0%9f%92%ab)
-- [Actor Model](#actor-model)
-  - [Actors are..](#actors-are)
-  - [Actors can..](#actors-can)
-  - [Location transparency](#location-transparency)
-- [Akka.NET](#akkanet)
-  - [Let it crash](#let-it-crash)
-  - [Where does Akka.net comes from](#where-does-akkanet-comes-from)
-  - [Basic Actors](#basic-actors)
-  - [Context](#context)
-  - [Actor References](#actor-references)
-  - [Actor Selection](#actor-selection)
-  - [Send Messages](#send-messages)
-  - [Receive Messages (Untyped)](#receive-messages-untyped)
-  - [Receive Messages (ReceiveActor)](#receive-messages-receiveactor)
-  - [Actor System](#actor-system)
-  - [Actor Hierarchy](#actor-hierarchy)
-  - [Supervision](#supervision)
-  - [Supervision Directives](#supervision-directives)
-  - [Supervision Strategies](#supervision-strategies)
-  - [Lifecycle](#lifecycle)
-  - [States (stack state)](#states-stack-state)
-    - [Become/Unbecome](#becomeunbecome)
-- [Scheduler](#scheduler)
-- [Routers](#routers)
-  - [Routing Strategy](#routing-strategy)
-  - [Routing](#routing)
-  - [Pool Router](#pool-router)
-  - [Group Router](#group-router)
-- [Remote](#remote)
-- [Overview of other capabilities](#overview-of-other-capabilities)
-- [Akka.net Pros](#akkanet-pros)
-- [Akka.net Cons](#akkanet-cons)
-  - [Alternatives: Distributed Computing](#alternatives-distributed-computing)
-  - [Alternatives: Serverless](#alternatives-serverless)
-  - [Where to find more info](#where-to-find-more-info)
-
----
-
 ## Actor Systems with Akka.net 💫
 
 ![akka.net logo](https://getakka.net/Images/akkalogo.png)
@@ -428,3 +389,8 @@ A group router does not supervise its routees.
 - [GitHub repo](https://github.com/akkadotnet/akka.net)
 - [Petabridge (bootcamps)](http://akka.net)
 - [Lightbend/Typesafe (original Akka devs)](https://www.lightbend.com/akka-platform)
+
+-----
+
+![](images/actor_model.png)
+![](images/lifecycle_methods.png)
