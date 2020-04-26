@@ -101,12 +101,11 @@ IActorRef myChildActor = Context.ActorOf(props2);
 ### Context
 
 - Current state of the actor
+- `IActorRefs` ( = Actor Handle) that you can use
   - `Sender` of the current message
   - `Parent`
   - `Children`
   - ..
-
-- `IActorRefs` that you can use.
 </script></section><section data-markdown><script type="text/template">
 ### Actor References
 
@@ -114,13 +113,10 @@ IActorRef myChildActor = Context.ActorOf(props2);
   - location in the system hierarchy
 
 ![Actor Path](images/actor_path.png)
-
-- `IActorRef` = Actor Handle
-  - lookup by address.
 </script></section><section data-markdown><script type="text/template">
 ### Actor Selection
 
-- `ActorPath` can include wildcards
+- `ActorPath` can include wildcards => Selection of groups
 
 ```csharp
 
@@ -210,7 +206,7 @@ var myActorSystem = ActorSystem.Create("MyActorSystem");
 
 ![Actor Hierarchy](images/actor_top_tree.png)
 </script></section><section data-markdown><script type="text/template">
-### Let it crash
+### Let it crash ®
 
 - Each actor is supervisor for its children
 - Actors are self restoring
@@ -218,17 +214,17 @@ var myActorSystem = ActorSystem.Create("MyActorSystem");
 </script></section><section data-markdown><script type="text/template">
 ### Supervision
 
-- The <img class="emoji" draggable="false" alt="🔝" src="https://twemoji.maxcdn.com/v/12.1.5/svg/1f51d.svg"/> actors supervise their <img class="emoji" draggable="false" alt="👶" src="https://twemoji.maxcdn.com/v/12.1.5/svg/1f476.svg"/> actors
-- There are "global" supervisors (aka Guardians)
+- Each <img class="emoji" draggable="false" alt="👨" src="https://twemoji.maxcdn.com/v/12.1.5/svg/1f468.svg"/> actor supervise its <img class="emoji" draggable="false" alt="👶" src="https://twemoji.maxcdn.com/v/12.1.5/svg/1f476.svg"/> sub-actors
+- There are <img class="emoji" draggable="false" alt="🔝" src="https://twemoji.maxcdn.com/v/12.1.5/svg/1f51d.svg"/> "global" supervisors (aka Guardians)
 
 ![Guardians](images/guardians.png)
 </script></section><section data-markdown><script type="text/template">
 ### Supervision Directives
 
--  <!-- .element: class="fragment" data-fragment-index="1" --> <img class="emoji" draggable="false" alt="🔂" src="https://twemoji.maxcdn.com/v/12.1.5/svg/1f502.svg"/> Restart the child (default) 
--  <!-- .element: class="fragment" data-fragment-index="2" --> <img class="emoji" draggable="false" alt="⏹" src="https://twemoji.maxcdn.com/v/12.1.5/svg/23f9.svg"/> Stop (terminate) the child
--  <!-- .element: class="fragment" data-fragment-index="3" --> <img class="emoji" draggable="false" alt="⏫" src="https://twemoji.maxcdn.com/v/12.1.5/svg/23eb.svg"/> Escalate the error
--  <!-- .element: class="fragment" data-fragment-index="4" --> <img class="emoji" draggable="false" alt="⏩" src="https://twemoji.maxcdn.com/v/12.1.5/svg/23e9.svg"/> Resume processing (ignore)
+1.  <!-- .element: class="fragment" data-fragment-index="1" --> <img class="emoji" draggable="false" alt="🔂" src="https://twemoji.maxcdn.com/v/12.1.5/svg/1f502.svg"/> Restart the child (default) 
+2.  <!-- .element: class="fragment" data-fragment-index="2" --> <img class="emoji" draggable="false" alt="⏹" src="https://twemoji.maxcdn.com/v/12.1.5/svg/23f9.svg"/> Stop (terminate) the child
+3.  <!-- .element: class="fragment" data-fragment-index="3" --> <img class="emoji" draggable="false" alt="⏫" src="https://twemoji.maxcdn.com/v/12.1.5/svg/23eb.svg"/> Escalate the error
+4.  <!-- .element: class="fragment" data-fragment-index="4" --> <img class="emoji" draggable="false" alt="⏩" src="https://twemoji.maxcdn.com/v/12.1.5/svg/23e9.svg"/> Resume processing (ignore)
 </script></section><section data-markdown><script type="text/template">
 ### Supervision Strategies
 
@@ -236,7 +232,6 @@ var myActorSystem = ActorSystem.Create("MyActorSystem");
 - <!-- .element: class="fragment" data-fragment-index="2" --> One-For-One Strategy (default)
 - <!-- .element: class="fragment" data-fragment-index="3" --> All-For-One Strategy
 - <!-- .element: class="fragment" data-fragment-index="4" --> Failure communication is done via System Messages
-
 </script></section><section data-markdown><script type="text/template">
 ### Lifecycle
 
@@ -268,12 +263,6 @@ var myActorSystem = ActorSystem.Create("MyActorSystem");
   - `Broadcast`
   - `GetRoutees`
 </script></section><section data-markdown><script type="text/template">
-### Routing Strategies
-
-![Consistent Hash](images/ConsistentHashRouter.png)
-![Broadcast](images/BroadcastRouter.png)
-![Round Robin](images/RoundRobinRouter.png)
-</script></section><section data-markdown><script type="text/template">
 ### Pool Router
 
 - Router that creates and manages its worker actors ("routees")
@@ -286,7 +275,13 @@ var myActorSystem = ActorSystem.Create("MyActorSystem");
 - Only forwards messages
 - Routees are found with `ActorPaths`
 </script></section><section data-markdown><script type="text/template">
-## Akka.Remote
+### Routing Strategies
+
+![Consistent Hash](images/ConsistentHashRouter.png)
+![Broadcast](images/BroadcastRouter.png)
+![Round Robin](images/RoundRobinRouter.png)
+</script></section><section data-markdown><script type="text/template">
+### Akka.Remote
 
 - Location Transparency
   - `RemoteActorRef : IActorRef`

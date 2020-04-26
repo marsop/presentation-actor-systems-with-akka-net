@@ -109,12 +109,11 @@ IActorRef myChildActor = Context.ActorOf(props2);
 ### Context
 
 - Current state of the actor
+- `IActorRefs` ( = Actor Handle) that you can use
   - `Sender` of the current message
   - `Parent`
   - `Children`
   - ..
-
-- `IActorRefs` that you can use.
 
 ----
 
@@ -125,14 +124,11 @@ IActorRef myChildActor = Context.ActorOf(props2);
 
 ![Actor Path](images/actor_path.png)
 
-- `IActorRef` = Actor Handle
-  - lookup by address.
-
 ----
 
 ### Actor Selection
 
-- `ActorPath` can include wildcards
+- `ActorPath` can include wildcards => Selection of groups
 
 ```csharp
 
@@ -234,7 +230,7 @@ var myActorSystem = ActorSystem.Create("MyActorSystem");
 
 ----
 
-### Let it crash
+### Let it crash ®
 
 - Each actor is supervisor for its children
 - Actors are self restoring
@@ -244,7 +240,7 @@ var myActorSystem = ActorSystem.Create("MyActorSystem");
 
 ### Supervision
 
-- Each 👨 actor supervise their 👶 actors
+- Each 👨 actor supervise its 👶 sub-actors
 - There are 🔝 "global" supervisors (aka Guardians)
 
 ![Guardians](images/guardians.png)
@@ -253,10 +249,10 @@ var myActorSystem = ActorSystem.Create("MyActorSystem");
 
 ### Supervision Directives
 
--  <!-- .element: class="fragment" data-fragment-index="1" --> 🔂 Restart the child (default) 
--  <!-- .element: class="fragment" data-fragment-index="2" --> ⏹ Stop (terminate) the child
--  <!-- .element: class="fragment" data-fragment-index="3" --> ⏫ Escalate the error
--  <!-- .element: class="fragment" data-fragment-index="4" --> ⏩ Resume processing (ignore)
+1.  <!-- .element: class="fragment" data-fragment-index="1" --> 🔂 Restart the child (default) 
+2.  <!-- .element: class="fragment" data-fragment-index="2" --> ⏹ Stop (terminate) the child
+3.  <!-- .element: class="fragment" data-fragment-index="3" --> ⏫ Escalate the error
+4.  <!-- .element: class="fragment" data-fragment-index="4" --> ⏩ Resume processing (ignore)
 
 ----
 
@@ -266,7 +262,6 @@ var myActorSystem = ActorSystem.Create("MyActorSystem");
 - <!-- .element: class="fragment" data-fragment-index="2" --> One-For-One Strategy (default)
 - <!-- .element: class="fragment" data-fragment-index="3" --> All-For-One Strategy
 - <!-- .element: class="fragment" data-fragment-index="4" --> Failure communication is done via System Messages
-
 
 ----
 
@@ -308,14 +303,6 @@ var myActorSystem = ActorSystem.Create("MyActorSystem");
 
 ----
 
-### Routing Strategies
-
-![Consistent Hash](images/ConsistentHashRouter.png)
-![Broadcast](images/BroadcastRouter.png)
-![Round Robin](images/RoundRobinRouter.png)
-
-----
-
 ### Pool Router
 
 - Router that creates and manages its worker actors ("routees")
@@ -332,7 +319,15 @@ var myActorSystem = ActorSystem.Create("MyActorSystem");
 
 ----
 
-## Akka.Remote
+### Routing Strategies
+
+![Consistent Hash](images/ConsistentHashRouter.png)
+![Broadcast](images/BroadcastRouter.png)
+![Round Robin](images/RoundRobinRouter.png)
+
+----
+
+### Akka.Remote
 
 - Location Transparency
   - `RemoteActorRef : IActorRef`
