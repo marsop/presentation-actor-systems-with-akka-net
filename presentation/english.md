@@ -84,7 +84,7 @@ We get: <!-- .element: class="fragment" data-fragment-index="2" -->
 - Platform: Java Virtual Machine
 - License: Apache License 2.0
 
-----
+---
 
 ### Basic Actors
 
@@ -139,7 +139,7 @@ var selection = Context.ActorSelection("/path/*/actorName");
 
 - `ActorSelection` (unlike `IActorRef`) are relative
 
-----
+---
 
 ### Send Messages
 
@@ -202,7 +202,7 @@ Receive<Foo>(foo => foo.Count < 4 && foo.Max > 10, foo =>
 
 ```
 
-----
+---
 
 ### Actor System
 
@@ -226,15 +226,7 @@ var myActorSystem = ActorSystem.Create("MyActorSystem");
 - Atomizes work (divide and conquer)
 - Contains errors (resilient system)
 
-![Actor Hierarchy](images/actor_top_tree.png)
-
-----
-
-### Let it crash ®
-
-- Each actor is supervisor for its children
-- Actors are self restoring
-- Persistency/Journaling
+![Actor Hierarchy](images/actor_top_tree.png) <!-- .element class="big" -->
 
 ----
 
@@ -249,10 +241,10 @@ var myActorSystem = ActorSystem.Create("MyActorSystem");
 
 ### Supervision Directives
 
-1.  <!-- .element: class="fragment" data-fragment-index="1" --> 🔂 Restart the child (default) 
-2.  <!-- .element: class="fragment" data-fragment-index="2" --> ⏹ Stop (terminate) the child
-3.  <!-- .element: class="fragment" data-fragment-index="3" --> ⏫ Escalate the error
-4.  <!-- .element: class="fragment" data-fragment-index="4" --> ⏩ Resume processing (ignore)
+1. <!-- .element: class="fragment" data-fragment-index="1" --> 🔂 Restart the child (default)
+2. <!-- .element: class="fragment" data-fragment-index="2" --> ⏹ Stop (terminate) the child
+3. <!-- .element: class="fragment" data-fragment-index="3" --> ⏫ Escalate the error
+4. <!-- .element: class="fragment" data-fragment-index="4" --> ⏩ Resume processing (ignore)
 
 ----
 
@@ -260,25 +252,23 @@ var myActorSystem = ActorSystem.Create("MyActorSystem");
 
 - <!-- .element: class="fragment" data-fragment-index="1" --> The supervision acts as an actor-based "try-catch"  
 - <!-- .element: class="fragment" data-fragment-index="2" --> One-For-One Strategy (default)
-- <!-- .element: class="fragment" data-fragment-index="3" --> All-For-One Strategy
-- <!-- .element: class="fragment" data-fragment-index="4" --> Failure communication is done via System Messages
+- <!-- .element: class="fragment" data-fragment-index="2" --> All-For-One Strategy
+- <!-- .element: class="fragment" data-fragment-index="3" --> Failure communication is done via System Messages
+
+----
+
+### Let it crash ®
+
+- Each actor is supervisor for its children
+- Actors are self restoring
 
 ----
 
 ### Lifecycle
 
-![Lifecycle](images/lifecycle_methods.png)
+![Lifecycle](images/lifecycle_methods.png)  <!-- .element class="big" -->
 
-----
-
-### States (stack state)
-
-#### Become/Unbecome
-
-![Become](images/behaviorstack-become.gif)
-![Unbecome](images/behaviorstack-unbecome.gif)
-
-----
+---
 
 ## Scheduler
 
@@ -287,7 +277,7 @@ var myActorSystem = ActorSystem.Create("MyActorSystem");
 - `ScheduleTellOnce()`
 - `ScheduleTellRepeatedly()`
 
-----
+---
 
 ### Routers
 
@@ -319,13 +309,23 @@ var myActorSystem = ActorSystem.Create("MyActorSystem");
 
 ----
 
-### Routing Strategies
+### Routing Strategy: Consitent Hash
 
-![Consistent Hash](images/ConsistentHashRouter.png)
-![Broadcast](images/BroadcastRouter.png)
-![Round Robin](images/RoundRobinRouter.png)
+![Consistent Hash](images/ConsistentHashRouter.png)  <!-- .element class="big" -->
 
 ----
+
+### Routing Strategy: Broadcast
+
+![Broadcast](images/BroadcastRouter.png)  <!-- .element class="big" -->
+
+----
+
+### Routing Strategy: Round Robin
+
+![Round Robin](images/RoundRobinRouter.png)  <!-- .element class="big" -->
+
+---
 
 ### Akka.Remote
 
@@ -345,7 +345,7 @@ var myActorSystem = ActorSystem.Create("MyActorSystem");
 - <!-- .element: class="fragment" data-fragment-index="2" --> 💾 Akka.Persistence
 - <!-- .element: class="fragment" data-fragment-index="3" --> 🗜 Akka.Streams
 
-----
+---
 
 ## Akka.net Pros
 
@@ -377,7 +377,7 @@ var myActorSystem = ActorSystem.Create("MyActorSystem");
 
 ![ms functions](https://blog.palfinger.ag/wp-content/uploads/2018/10/0_SboqG9ze_J63PJ2i-696x310.png")
 
-----
+---
 
 ### Where to find more info
 
