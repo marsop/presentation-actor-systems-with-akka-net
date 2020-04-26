@@ -244,8 +244,8 @@ var myActorSystem = ActorSystem.Create("MyActorSystem");
 
 ### Supervision
 
-- The 🔝 actors supervise their 👶 actors
-- There are "global" supervisors (aka Guardians)
+- Each 👨 actor supervise their 👶 actors
+- There are 🔝 "global" supervisors (aka Guardians)
 
 ![Guardians](images/guardians.png)
 
