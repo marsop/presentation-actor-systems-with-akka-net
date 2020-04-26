@@ -26,35 +26,36 @@
 </script></section><section data-markdown><script type="text/template">
 Most of the materials for this presentation are taken from the [Petabridge Akka.NET Bootcamp](https://github.com/petabridge/akka-bootcamp) which is licensed under Apache 2.0.
 </script></section></section><section ><section data-markdown><script type="text/template">
-## Actor Model
+## Actor Model ™
 
-![Actor Model](images/actor_model.png#big)
-
-</script></section><section data-markdown><script type="text/template">
-What is an Actor?
-</script></section><section data-markdown><script type="text/template">
-History of the actor model
+![Actor Model](images/actor_model.png)
 </script></section><section data-markdown><script type="text/template">
 ### Actors are..
 
-- everything <img class="emoji" draggable="false" alt="🦄" src="https://twemoji.maxcdn.com/v/12.1.5/svg/1f984.svg"/> (Everything is an actor)
-- lightweight
-- stateful
-- organized in Actor Systems
+- <!-- .element: class="fragment" data-fragment-index="1" --> <img class="emoji" draggable="false" alt="🦄" src="https://twemoji.maxcdn.com/v/12.1.5/svg/1f984.svg"/> Everything (Everything is an actor)
+- <!-- .element: class="fragment" data-fragment-index="2" --> <img class="emoji" draggable="false" alt="🎈" src="https://twemoji.maxcdn.com/v/12.1.5/svg/1f388.svg"/> Lightweight
+- <!-- .element: class="fragment" data-fragment-index="3" --> <img class="emoji" draggable="false" alt="💾" src="https://twemoji.maxcdn.com/v/12.1.5/svg/1f4be.svg"/> Stateful
+- <!-- .element: class="fragment" data-fragment-index="4" --> <img class="emoji" draggable="false" alt="👪" src="https://twemoji.maxcdn.com/v/12.1.5/svg/1f46a.svg"/> Organized in Actor Systems
+- <!-- .element: class="fragment" data-fragment-index="5" --> <img class="emoji" draggable="false" alt="🚩" src="https://twemoji.maxcdn.com/v/12.1.5/svg/1f6a9.svg"/> Addressable
 </script></section><section data-markdown><script type="text/template">
 ### Actors can..
 
-1. Receive and process messages **sequentially** <img class="emoji" draggable="false" alt="📧" src="https://twemoji.maxcdn.com/v/12.1.5/svg/1f4e7.svg"/>
-2. Change its behavior (internal state)
-3. Send new messages
-4. Create other actors (span children <img class="emoji" draggable="false" alt="👶" src="https://twemoji.maxcdn.com/v/12.1.5/svg/1f476.svg"/>)
+- <!-- .element: class="fragment" data-fragment-index="1" --> <img class="emoji" draggable="false" alt="📬" src="https://twemoji.maxcdn.com/v/12.1.5/svg/1f4ec.svg"/> Receive (and process) messages sequentially
+- <!-- .element: class="fragment" data-fragment-index="2" --> <img class="emoji" draggable="false" alt="🎭" src="https://twemoji.maxcdn.com/v/12.1.5/svg/1f3ad.svg"/> Change its behavior  (internal state)
+- <!-- .element: class="fragment" data-fragment-index="3" --> <img class="emoji" draggable="false" alt="👶" src="https://twemoji.maxcdn.com/v/12.1.5/svg/1f476.svg"/> Create other actors (span children)
+- <!-- .element: class="fragment" data-fragment-index="4" --> <img class="emoji" draggable="false" alt="📧" src="https://twemoji.maxcdn.com/v/12.1.5/svg/1f4e7.svg"/> Send new messages
 </script></section><section data-markdown><script type="text/template">
 ### Location transparency
 
-- Actor References instead of direct communication
-- Communication only via messages (that can be routed)
-- Dead letter concept
-- Actors can be located in the same machine or in a different country
+Because of: <!-- .element: class="fragment" data-fragment-index="1" -->
+
+- <!-- .element: class="fragment" data-fragment-index="1" --> Actor references instead of direct communication
+- <!-- .element: class="fragment" data-fragment-index="1" --> Asynchronous communication only via messages
+- <!-- .element: class="fragment" data-fragment-index="1" --> Automatic routing for messages
+
+We get: <!-- .element: class="fragment" data-fragment-index="2" -->
+
+- <!-- .element: class="fragment" data-fragment-index="2" --> Actors can be located in the same process or in a different AWS region
 </script></section></section><section ><section data-markdown><script type="text/template">
 ## Akka.NET
 
@@ -62,27 +63,24 @@ History of the actor model
 
 ![Nuget stats](images/akkanet_nuget_stats.png)
 </script></section><section data-markdown><script type="text/template">
-- Actor Model
-- Lightweight event-driven processes (1M+ actors per GB)
-- Event (aka Message) -based Communication
-</script></section><section data-markdown><script type="text/template">
-Simple and high-level abstractions for concurrency and parallelism
-</script></section><section data-markdown><script type="text/template">
-### Let it crash
+### Akka.NET Features
 
-- Supervisor hierarchy
-- Self restoring
-- Persistency/Journaling
+- <!-- .element: class="fragment" data-fragment-index="1" --> <img class="emoji" draggable="false" alt="👪" src="https://twemoji.maxcdn.com/v/12.1.5/svg/1f46a.svg"/> Actor Model
+- <!-- .element: class="fragment" data-fragment-index="2" --> <img class="emoji" draggable="false" alt="🎈" src="https://twemoji.maxcdn.com/v/12.1.5/svg/1f388.svg"/> Lightweight event-driven processes
+  - <!-- .element: class="fragment" data-fragment-index="2" --> (1M+ actors per GB)
+- <!-- .element: class="fragment" data-fragment-index="3" --> Event-based Communication
+  - <!-- .element: class="fragment" data-fragment-index="3" --> <img class="emoji" draggable="false" alt="📧" src="https://twemoji.maxcdn.com/v/12.1.5/svg/1f4e7.svg"/> Message = Event
 </script></section><section data-markdown><script type="text/template">
-### Where does Akka.net comes from
 
-- Scala (JVM)
-- Akka
-  - add stats
+![Akka logo](images/akka_logo.png)
+
+- Initial release: July 2009
+- Stable release January 28, 2020
+- Language: Scala
+- Platform: Java Virtual Machine
+- License: Apache License 2.0
 </script></section><section data-markdown><script type="text/template">
 ### Basic Actors
-
-Created based on `Props` object (the recipe of actor creation)
 
 - `UntypedActor`
 - `ReceiveActor`
@@ -97,40 +95,48 @@ var myActor = MyActorSystem.ActorOf(props);
 var props2 = Props.Create(() => new ChildActor(), "Child");
 IActorRef myChildActor = Context.ActorOf(props2);
 ```
+
+`Props` = (serializable) recipe for actor creation
 </script></section><section data-markdown><script type="text/template">
 ### Context
 
-The Context holds metadata about the current state of the actor, such as the Sender of the current message and things like current actors Parent or Children.
+- Current state of the actor
+  - `Sender` of the current message
+  - `Parent`
+  - `Children`
+  - ..
 
-Parent, Children, and Sender all provide IActorRefs that you can use.
+- `IActorRefs` that you can use.
 </script></section><section data-markdown><script type="text/template">
 ### Actor References
 
-All actors have an address (technically, an `ActorPath`) which represents where they are in the system hierarchy, and you can get a handle to them (get their `IActorRef`) by looking them up by their address.
+- `ActorPath` = Actor Address
+  - location in the system hierarchy
 
 ![Actor Path](images/actor_path.png)
+
+- `IActorRef` = Actor Handle
+  - lookup by address.
 </script></section><section data-markdown><script type="text/template">
 ### Actor Selection
 
-Use `ActorPaths` and wildcards to create "Selections" of actors.
-
-They are not meant to be passed around (unlike `IActorRef`) because they can be relative!
+- `ActorPath` can include wildcards
 
 ```csharp
 
-var selection = Context.ActorSelection("/path/to/actorName");
+var selection = Context.ActorSelection("/path/*/actorName");
 
 
 ```
+
+- `ActorSelection` (unlike `IActorRef`) are relative
 </script></section><section data-markdown><script type="text/template">
 ### Send Messages
 
-- Messages are normal POCOs (better if immutable).
+- Messages are normal `POCO`s
+  - better if immutable
 - Usually sent asynchronously (`.Tell()`)
-- Can also be sent synchronously (`.`)
-
-- `PoisonPill`
-
+- Can also be sent synchronously (`.Ask()`)
 
 ```csharp
 
@@ -140,17 +146,16 @@ actorRef.Tell("simple (string) message");
 // send and wait for response
 actorRef.Ask(new MyMessage(1,2.3,true,"that's all friends"));
 
-// inside the actor..
+// from inside the actor (special message!)
 Self.Tell(PoisonPill.Instance);
 
 
 ```
-
-
 </script></section><section data-markdown><script type="text/template">
 ### Receive Messages (Untyped)
 
-Messages in `Mailbox` are persisted between restarts (the ones in the `Stash` do not).
+- The `Mailbox` <img class="emoji" draggable="false" alt="📥" src="https://twemoji.maxcdn.com/v/12.1.5/svg/1f4e5.svg"/> is persisted between restarts
+- The `Stash` <img class="emoji" draggable="false" alt="🗃" src="https://twemoji.maxcdn.com/v/12.1.5/svg/1f5c3.svg"/> is not
 
 ```csharp
 protected override void OnReceive(object message)
@@ -185,56 +190,57 @@ Receive<Foo>(foo => foo.Count < 4 && foo.Max > 10, foo =>
 </script></section><section data-markdown><script type="text/template">
 ### Actor System
 
-- Reference to the Akka.NET Framework
+- Reference to the `Akka.NET` Framework
 - Manages the lifetime of the actors
-- Context for the actors
-- It is a "heavy" object! (create 1 per app)
+- `Context` for the actors
+- Creates <img class="emoji" draggable="false" alt="🔝" src="https://twemoji.maxcdn.com/v/12.1.5/svg/1f51d.svg"/> actors
 
 ```csharp
 
 var myActorSystem = ActorSystem.Create("MyActorSystem");
 
 ```
+
+- <img class="emoji" draggable="false" alt="⚠" src="https://twemoji.maxcdn.com/v/12.1.5/svg/26a0.svg"/> It is a **heavy** object! (1x/app) <img class="emoji" draggable="false" alt="⚠" src="https://twemoji.maxcdn.com/v/12.1.5/svg/26a0.svg"/>
 </script></section><section data-markdown><script type="text/template">
 ### Actor Hierarchy
 
-When you create the actor on the ActorSystem directly (as above), it is a top-level actor.
-
-There are two key reasons actors exist in a hierarchy:
-
-- To atomize work and turn massive amounts of data into manageable chunks
-- To contain errors and make the system resilient
+- Atomizes work (divide and conquer)
+- Contains errors (resilient system)
 
 ![Actor Hierarchy](images/actor_top_tree.png)
 </script></section><section data-markdown><script type="text/template">
+### Let it crash
+
+- Each actor is supervisor for its children
+- Actors are self restoring
+- Persistency/Journaling
+</script></section><section data-markdown><script type="text/template">
 ### Supervision
 
-The "top" actors supervise their "sub" actors
+- The <img class="emoji" draggable="false" alt="🔝" src="https://twemoji.maxcdn.com/v/12.1.5/svg/1f51d.svg"/> actors supervise their <img class="emoji" draggable="false" alt="👶" src="https://twemoji.maxcdn.com/v/12.1.5/svg/1f476.svg"/> actors
+- There are "global" supervisors (aka Guardians)
 
 ![Guardians](images/guardians.png)
 </script></section><section data-markdown><script type="text/template">
 ### Supervision Directives
 
-Types of supervision directives (i.e. what decisions a supervisor can make):
-
-- Restart the child (default): this is the common case, and the default.
-- Stop the child: this permanently terminates the child actor.
-- Escalate the error (and stop itself): this is the parent saying "I don't know what to do! I'm gonna stop everything and ask MY parent!"
-- Resume processing (ignores the error): you generally won't use this. Ignore it for now.
+-  <!-- .element: class="fragment" data-fragment-index="1" --> <img class="emoji" draggable="false" alt="🔂" src="https://twemoji.maxcdn.com/v/12.1.5/svg/1f502.svg"/> Restart the child (default) 
+-  <!-- .element: class="fragment" data-fragment-index="2" --> <img class="emoji" draggable="false" alt="⏹" src="https://twemoji.maxcdn.com/v/12.1.5/svg/23f9.svg"/> Stop (terminate) the child
+-  <!-- .element: class="fragment" data-fragment-index="3" --> <img class="emoji" draggable="false" alt="⏫" src="https://twemoji.maxcdn.com/v/12.1.5/svg/23eb.svg"/> Escalate the error
+-  <!-- .element: class="fragment" data-fragment-index="4" --> <img class="emoji" draggable="false" alt="⏩" src="https://twemoji.maxcdn.com/v/12.1.5/svg/23e9.svg"/> Resume processing (ignore)
 </script></section><section data-markdown><script type="text/template">
 ### Supervision Strategies
 
-There are two built-in supervision strategies:
-
-- One-For-One Strategy (default)
-- All-For-One Strategy
-
-The supervision acts as an actor-based "try-catch". The communication of Failures is done with `System Messages`.
+- <!-- .element: class="fragment" data-fragment-index="1" --> The supervision acts as an actor-based "try-catch"  
+- <!-- .element: class="fragment" data-fragment-index="2" --> One-For-One Strategy (default)
+- <!-- .element: class="fragment" data-fragment-index="3" --> All-For-One Strategy
+- <!-- .element: class="fragment" data-fragment-index="4" --> Failure communication is done via System Messages
 
 </script></section><section data-markdown><script type="text/template">
 ### Lifecycle
 
-![Lifecycle](images/lifecycle_methods.png#big)
+![Lifecycle](images/lifecycle_methods.png)
 </script></section><section data-markdown><script type="text/template">
 ### States (stack state)
 
@@ -250,62 +256,63 @@ The supervision acts as an actor-based "try-catch". The communication of Failure
 - `ScheduleTellOnce()`
 - `ScheduleTellRepeatedly()`
 </script></section><section data-markdown><script type="text/template">
-## Routers
+### Routers
 
-A Router is a special kind of actor that acts as a messaging hub to a group of other actors. The purpose of a Router is to divide and balance work (represented as message streams) across some group of other actors, which will actually do the work.
-What's special about a Router?
-
-A Router actually is an actor, but with one critical difference: it can process more than one message at a time.
-
-The Sender of a message delivered to a routee is the actor who sent the message to the router. The router just forwards the message. A router is effectively transparent, and only works in one direction: to its routees.
-
-Special messages:
-
-- `Broadcast`
-- `GetRoutees`
+- Special kind of actor
+- Messaging hub to a group of other actors
+- Purpose: divide and balance work
+- It can process more than one message at a time
+- `Sender` of a message delivered to a routee is the actor who sent the message
+  - The router just forwards the message
+- Special Router messages:
+  - `Broadcast`
+  - `GetRoutees`
 </script></section><section data-markdown><script type="text/template">
-### Routing Strategy
+### Routing Strategies
 
 ![Consistent Hash](images/ConsistentHashRouter.png)
 ![Broadcast](images/BroadcastRouter.png)
 ![Round Robin](images/RoundRobinRouter.png)
-
-</script></section><section data-markdown><script type="text/template">
-### Routing
 </script></section><section data-markdown><script type="text/template">
 ### Pool Router
 
-A "Pool" router is a Router that creates and manages its worker actors ("routees"). You provide a NrOfInstances to the router and the router will handle routee creation (and supervision) by itself.
+- Router that creates and manages its worker actors ("routees")
+- `NrOfInstances` will be created (and supervised)
 </script></section><section data-markdown><script type="text/template">
 ### Group Router
 
-A group router is a router that does not create/manage its routees. It only forwards them messages. You specify the routees when creating the group router by passing the router the ActorPaths for each routee.
-
-A group router does not supervise its routees.
+- It does not create its routees
+- It does not supervise its routees.
+- Only forwards messages
+- Routees are found with `ActorPaths`
 </script></section><section data-markdown><script type="text/template">
-## Remote
+## Akka.Remote
 
-- Akka.Remote
+- Location Transparency
+  - `RemoteActorRef : IActorRef`
+- Abstracts network transport
+- Strongly typed serialization
+  - based on Fully Qualified Names (FQN)
+  - Use shared assemblies!
+- Allows remote deployment of actors
+</script></section><section data-markdown><script type="text/template">
+## Other Packages
 
------
-
-## Overview of other capabilities
-
-- Akka.Cluster
-- Akka.Persistence
-- Akka.Streams
+- <!-- .element: class="fragment" data-fragment-index="1" --> <img class="emoji" draggable="false" alt="🕸" src="https://twemoji.maxcdn.com/v/12.1.5/svg/1f578.svg"/> Akka.Cluster
+- <!-- .element: class="fragment" data-fragment-index="2" --> <img class="emoji" draggable="false" alt="💾" src="https://twemoji.maxcdn.com/v/12.1.5/svg/1f4be.svg"/> Akka.Persistence
+- <!-- .element: class="fragment" data-fragment-index="3" --> <img class="emoji" draggable="false" alt="🗜" src="https://twemoji.maxcdn.com/v/12.1.5/svg/1f5dc.svg"/> Akka.Streams
 </script></section><section data-markdown><script type="text/template">
 ## Akka.net Pros
 
-- Resilient
-- Scalable
-- Very performant
+- <!-- .element: class="fragment" data-fragment-index="1" --> <img class="emoji" draggable="false" alt="♦" src="https://twemoji.maxcdn.com/v/12.1.5/svg/2666.svg"/> Resilient
+- <!-- .element: class="fragment" data-fragment-index="2" --> <img class="emoji" draggable="false" alt="🗻" src="https://twemoji.maxcdn.com/v/12.1.5/svg/1f5fb.svg"/> Scalable
+- <!-- .element: class="fragment" data-fragment-index="3" --> <img class="emoji" draggable="false" alt="🏎" src="https://twemoji.maxcdn.com/v/12.1.5/svg/1f3ce.svg"/> Very performant
 </script></section><section data-markdown><script type="text/template">
 ## Akka.net Cons
 
-- Not so easy to get started
-- Yet another abstraction
-- Complex distributed logic is still complex
+- <!-- .element: class="fragment" data-fragment-index="1" --> <img class="emoji" draggable="false" alt="❔" src="https://twemoji.maxcdn.com/v/12.1.5/svg/2754.svg"/> New paradigm
+- <!-- .element: class="fragment" data-fragment-index="2" --> <img class="emoji" draggable="false" alt="🙋" src="https://twemoji.maxcdn.com/v/12.1.5/svg/1f64b.svg"/> Limited Support
+- <!-- .element: class="fragment" data-fragment-index="3" --> <img class="emoji" draggable="false" alt="🕸" src="https://twemoji.maxcdn.com/v/12.1.5/svg/1f578.svg"/> Complex distributed logic is still complex
 </script></section></section><section ><section data-markdown><script type="text/template">
 ### Alternatives: Distributed Computing
 
@@ -324,12 +331,7 @@ A group router does not supervise its routees.
 - [Akka.net (docs, howto)](http://getakka.net)
 - [GitHub repo](https://github.com/akkadotnet/akka.net)
 - [Petabridge (bootcamps)](http://akka.net)
-- [Lightbend/Typesafe (original Akka devs)](https://www.lightbend.com/akka-platform)
-
------
-
-![](images/actor_model.png)
-![](images/lifecycle_methods.png)</script></section></section></div>
+- [Lightbend/Typesafe (original Akka devs)](https://www.lightbend.com/akka-platform)</script></section></section></div>
     </div>
 
     <script src="./js/reveal.js"></script>

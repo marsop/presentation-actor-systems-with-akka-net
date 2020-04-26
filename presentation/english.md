@@ -18,45 +18,42 @@ Most of the materials for this presentation are taken from the [Petabridge Akka.
 
 ---
 
-## Actor Model
+## Actor Model ™
 
-![Actor Model](images/actor_model.png#big)
-
-
-----
-
-What is an Actor?
-
-----
-
-History of the actor model
+![Actor Model](images/actor_model.png)
 
 ----
 
 ### Actors are..
 
-- everything 🦄 (Everything is an actor)
-- lightweight
-- stateful
-- organized in Actor Systems
+- <!-- .element: class="fragment" data-fragment-index="1" --> 🦄 Everything (Everything is an actor)
+- <!-- .element: class="fragment" data-fragment-index="2" --> 🎈 Lightweight
+- <!-- .element: class="fragment" data-fragment-index="3" --> 💾 Stateful
+- <!-- .element: class="fragment" data-fragment-index="4" --> 👪 Organized in Actor Systems
+- <!-- .element: class="fragment" data-fragment-index="5" --> 🚩 Addressable
 
 ----
 
 ### Actors can..
 
-1. Receive and process messages **sequentially** 📧
-2. Change its behavior (internal state)
-3. Send new messages
-4. Create other actors (span children 👶)
+- <!-- .element: class="fragment" data-fragment-index="1" --> 📬 Receive (and process) messages sequentially
+- <!-- .element: class="fragment" data-fragment-index="2" --> 🎭 Change its behavior  (internal state)
+- <!-- .element: class="fragment" data-fragment-index="3" --> 👶 Create other actors (span children)
+- <!-- .element: class="fragment" data-fragment-index="4" --> 📧 Send new messages
 
 ----
 
 ### Location transparency
 
-- Actor References instead of direct communication
-- Communication only via messages (that can be routed)
-- Dead letter concept
-- Actors can be located in the same machine or in a different country
+Because of: <!-- .element: class="fragment" data-fragment-index="1" -->
+
+- <!-- .element: class="fragment" data-fragment-index="1" --> Actor references instead of direct communication
+- <!-- .element: class="fragment" data-fragment-index="1" --> Asynchronous communication only via messages
+- <!-- .element: class="fragment" data-fragment-index="1" --> Automatic routing for messages
+
+We get: <!-- .element: class="fragment" data-fragment-index="2" -->
+
+- <!-- .element: class="fragment" data-fragment-index="2" --> Actors can be located in the same process or in a different AWS region
 
 ---
 
@@ -68,35 +65,28 @@ History of the actor model
 
 ----
 
-- Actor Model
-- Lightweight event-driven processes (1M+ actors per GB)
-- Event (aka Message) -based Communication
+### Akka.NET Features
+
+- <!-- .element: class="fragment" data-fragment-index="1" --> 👪 Actor Model
+- <!-- .element: class="fragment" data-fragment-index="2" --> 🎈 Lightweight event-driven processes
+  - <!-- .element: class="fragment" data-fragment-index="2" --> (1M+ actors per GB)
+- <!-- .element: class="fragment" data-fragment-index="3" --> Event-based Communication
+  - <!-- .element: class="fragment" data-fragment-index="3" --> 📧 Message = Event
 
 ----
 
-Simple and high-level abstractions for concurrency and parallelism
 
-----
+![Akka logo](images/akka_logo.png)
 
-### Let it crash
-
-- Supervisor hierarchy
-- Self restoring
-- Persistency/Journaling
-
-----
-
-### Where does Akka.net comes from
-
-- Scala (JVM)
-- Akka
-  - add stats
+- Initial release: July 2009
+- Stable release January 28, 2020
+- Language: Scala
+- Platform: Java Virtual Machine
+- License: Apache License 2.0
 
 ----
 
 ### Basic Actors
-
-Created based on `Props` object (the recipe of actor creation)
 
 - `UntypedActor`
 - `ReceiveActor`
@@ -112,47 +102,55 @@ var props2 = Props.Create(() => new ChildActor(), "Child");
 IActorRef myChildActor = Context.ActorOf(props2);
 ```
 
+`Props` = (serializable) recipe for actor creation
+
 ----
 
 ### Context
 
-The Context holds metadata about the current state of the actor, such as the Sender of the current message and things like current actors Parent or Children.
+- Current state of the actor
+  - `Sender` of the current message
+  - `Parent`
+  - `Children`
+  - ..
 
-Parent, Children, and Sender all provide IActorRefs that you can use.
+- `IActorRefs` that you can use.
 
 ----
 
 ### Actor References
 
-All actors have an address (technically, an `ActorPath`) which represents where they are in the system hierarchy, and you can get a handle to them (get their `IActorRef`) by looking them up by their address.
+- `ActorPath` = Actor Address
+  - location in the system hierarchy
 
 ![Actor Path](images/actor_path.png)
+
+- `IActorRef` = Actor Handle
+  - lookup by address.
 
 ----
 
 ### Actor Selection
 
-Use `ActorPaths` and wildcards to create "Selections" of actors.
-
-They are not meant to be passed around (unlike `IActorRef`) because they can be relative!
+- `ActorPath` can include wildcards
 
 ```csharp
 
-var selection = Context.ActorSelection("/path/to/actorName");
+var selection = Context.ActorSelection("/path/*/actorName");
 
 
 ```
+
+- `ActorSelection` (unlike `IActorRef`) are relative
 
 ----
 
 ### Send Messages
 
-- Messages are normal POCOs (better if immutable).
+- Messages are normal `POCO`s
+  - better if immutable
 - Usually sent asynchronously (`.Tell()`)
-- Can also be sent synchronously (`.`)
-
-- `PoisonPill`
-
+- Can also be sent synchronously (`.Ask()`)
 
 ```csharp
 
@@ -162,19 +160,18 @@ actorRef.Tell("simple (string) message");
 // send and wait for response
 actorRef.Ask(new MyMessage(1,2.3,true,"that's all friends"));
 
-// inside the actor..
+// from inside the actor (special message!)
 Self.Tell(PoisonPill.Instance);
 
 
 ```
 
-
-
 ----
 
 ### Receive Messages (Untyped)
 
-Messages in `Mailbox` are persisted between restarts (the ones in the `Stash` do not).
+- The `Mailbox` 📥 is persisted between restarts
+- The `Stash` 🗃 is not
 
 ```csharp
 protected override void OnReceive(object message)
@@ -213,10 +210,10 @@ Receive<Foo>(foo => foo.Count < 4 && foo.Max > 10, foo =>
 
 ### Actor System
 
-- Reference to the Akka.NET Framework
+- Reference to the `Akka.NET` Framework
 - Manages the lifetime of the actors
-- Context for the actors
-- It is a "heavy" object! (create 1 per app)
+- `Context` for the actors
+- Creates 🔝 actors
 
 ```csharp
 
@@ -224,24 +221,31 @@ var myActorSystem = ActorSystem.Create("MyActorSystem");
 
 ```
 
+- ⚠ It is a **heavy** object! (1x/app) ⚠
+
 ----
 
 ### Actor Hierarchy
 
-When you create the actor on the ActorSystem directly (as above), it is a top-level actor.
-
-There are two key reasons actors exist in a hierarchy:
-
-- To atomize work and turn massive amounts of data into manageable chunks
-- To contain errors and make the system resilient
+- Atomizes work (divide and conquer)
+- Contains errors (resilient system)
 
 ![Actor Hierarchy](images/actor_top_tree.png)
 
 ----
 
+### Let it crash
+
+- Each actor is supervisor for its children
+- Actors are self restoring
+- Persistency/Journaling
+
+----
+
 ### Supervision
 
-The "top" actors supervise their "sub" actors
+- The 🔝 actors supervise their 👶 actors
+- There are "global" supervisors (aka Guardians)
 
 ![Guardians](images/guardians.png)
 
@@ -249,30 +253,26 @@ The "top" actors supervise their "sub" actors
 
 ### Supervision Directives
 
-Types of supervision directives (i.e. what decisions a supervisor can make):
-
-- Restart the child (default): this is the common case, and the default.
-- Stop the child: this permanently terminates the child actor.
-- Escalate the error (and stop itself): this is the parent saying "I don't know what to do! I'm gonna stop everything and ask MY parent!"
-- Resume processing (ignores the error): you generally won't use this. Ignore it for now.
+-  <!-- .element: class="fragment" data-fragment-index="1" --> 🔂 Restart the child (default) 
+-  <!-- .element: class="fragment" data-fragment-index="2" --> ⏹ Stop (terminate) the child
+-  <!-- .element: class="fragment" data-fragment-index="3" --> ⏫ Escalate the error
+-  <!-- .element: class="fragment" data-fragment-index="4" --> ⏩ Resume processing (ignore)
 
 ----
 
 ### Supervision Strategies
 
-There are two built-in supervision strategies:
-
-- One-For-One Strategy (default)
-- All-For-One Strategy
-
-The supervision acts as an actor-based "try-catch". The communication of Failures is done with `System Messages`.
+- <!-- .element: class="fragment" data-fragment-index="1" --> The supervision acts as an actor-based "try-catch"  
+- <!-- .element: class="fragment" data-fragment-index="2" --> One-For-One Strategy (default)
+- <!-- .element: class="fragment" data-fragment-index="3" --> All-For-One Strategy
+- <!-- .element: class="fragment" data-fragment-index="4" --> Failure communication is done via System Messages
 
 
 ----
 
 ### Lifecycle
 
-![Lifecycle](images/lifecycle_methods.png#big)
+![Lifecycle](images/lifecycle_methods.png)
 
 ----
 
@@ -294,76 +294,77 @@ The supervision acts as an actor-based "try-catch". The communication of Failure
 
 ----
 
-## Routers
+### Routers
 
-A Router is a special kind of actor that acts as a messaging hub to a group of other actors. The purpose of a Router is to divide and balance work (represented as message streams) across some group of other actors, which will actually do the work.
-What's special about a Router?
-
-A Router actually is an actor, but with one critical difference: it can process more than one message at a time.
-
-The Sender of a message delivered to a routee is the actor who sent the message to the router. The router just forwards the message. A router is effectively transparent, and only works in one direction: to its routees.
-
-Special messages:
-
-- `Broadcast`
-- `GetRoutees`
+- Special kind of actor
+- Messaging hub to a group of other actors
+- Purpose: divide and balance work
+- It can process more than one message at a time
+- `Sender` of a message delivered to a routee is the actor who sent the message
+  - The router just forwards the message
+- Special Router messages:
+  - `Broadcast`
+  - `GetRoutees`
 
 ----
 
-### Routing Strategy
+### Routing Strategies
 
 ![Consistent Hash](images/ConsistentHashRouter.png)
 ![Broadcast](images/BroadcastRouter.png)
 ![Round Robin](images/RoundRobinRouter.png)
 
-
-----
-
-### Routing
-
 ----
 
 ### Pool Router
 
-A "Pool" router is a Router that creates and manages its worker actors ("routees"). You provide a NrOfInstances to the router and the router will handle routee creation (and supervision) by itself.
+- Router that creates and manages its worker actors ("routees")
+- `NrOfInstances` will be created (and supervised)
 
 ----
 
 ### Group Router
 
-A group router is a router that does not create/manage its routees. It only forwards them messages. You specify the routees when creating the group router by passing the router the ActorPaths for each routee.
-
-A group router does not supervise its routees.
+- It does not create its routees
+- It does not supervise its routees.
+- Only forwards messages
+- Routees are found with `ActorPaths`
 
 ----
 
-## Remote
+## Akka.Remote
 
-- Akka.Remote
+- Location Transparency
+  - `RemoteActorRef : IActorRef`
+- Abstracts network transport
+- Strongly typed serialization
+  - based on Fully Qualified Names (FQN)
+  - Use shared assemblies!
+- Allows remote deployment of actors
 
------
+----
 
-## Overview of other capabilities
+## Other Packages
 
-- Akka.Cluster
-- Akka.Persistence
-- Akka.Streams
+- <!-- .element: class="fragment" data-fragment-index="1" --> 🕸 Akka.Cluster
+- <!-- .element: class="fragment" data-fragment-index="2" --> 💾 Akka.Persistence
+- <!-- .element: class="fragment" data-fragment-index="3" --> 🗜 Akka.Streams
 
 ----
 
 ## Akka.net Pros
 
-- Resilient
-- Scalable
-- Very performant
+- <!-- .element: class="fragment" data-fragment-index="1" --> ♦ Resilient
+- <!-- .element: class="fragment" data-fragment-index="2" --> 🗻 Scalable
+- <!-- .element: class="fragment" data-fragment-index="3" --> 🏎 Very performant
 
 ----
 
 ## Akka.net Cons
 
-- Not so easy to get started
-- Yet another abstraction
-- Complex distributed logic is still complex
+- <!-- .element: class="fragment" data-fragment-index="1" --> ❔ New paradigm
+- <!-- .element: class="fragment" data-fragment-index="2" --> 🙋 Limited Support
+- <!-- .element: class="fragment" data-fragment-index="3" --> 🕸 Complex distributed logic is still complex
 
 ---
 
@@ -389,8 +390,3 @@ A group router does not supervise its routees.
 - [GitHub repo](https://github.com/akkadotnet/akka.net)
 - [Petabridge (bootcamps)](http://akka.net)
 - [Lightbend/Typesafe (original Akka devs)](https://www.lightbend.com/akka-platform)
-
------
-
-![](images/actor_model.png)
-![](images/lifecycle_methods.png)
