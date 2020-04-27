@@ -6,7 +6,9 @@
     "scripts": {
         "test": "reveal-md presentation/english.md --css presentation.css --preprocessor emoji2svgimg.js",
         "serve": "reveal-md presentation/english.md --css presentation.css --preprocessor emoji2svgimg.js -w",
+        "serve-de": "reveal-md presentation/deutsch.md --css presentation.css --preprocessor emoji2svgimg.js -w",
         "build": "reveal-md presentation/english.md --css presentation.css --static docs --preprocessor emoji2svgimg.js --assets-dir=assets",
+        "build-de": "reveal-md presentation/deutsch.md --css presentation.css --static docs_de --preprocessor emoji2svgimg.js --assets-dir=assets",
         "export-pdf": "reveal-md presentation/english.md --css presentation.css --print english.pdf --preprocessor emoji2svgimg.js"
     },
     "repository": {
