@@ -10,8 +10,6 @@ highlight-theme: github
 
 [Alberto Gregorio](https://albertogregorio.com)
 
-2020-04-27
-
 ----
 
 Most of the materials for this presentation are taken from the [Petabridge Akka.NET Bootcamp](https://github.com/petabridge/akka-bootcamp) which is licensed under Apache 2.0.
